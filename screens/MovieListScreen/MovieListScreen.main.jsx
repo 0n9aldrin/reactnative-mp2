@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { SafeAreaView, FlatList, Button, TouchableOpacity } from "react-native";
+import { SafeAreaView, FlatList, Button, TouchableOpacity, Text } from "react-native";
 import { SearchBar } from "react-native-elements";
 import { MovieCell } from "./components/MovieCell";
 import { styles } from "./MovieListScreen.styles";
