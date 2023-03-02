@@ -1,6 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { SafeAreaView, FlatList, Button, TouchableOpacity, Text } from "react-native";
+import {
+  SafeAreaView,
+  FlatList,
+  Button,
+  TouchableOpacity,
+  Text,
+} from "react-native";
 import { SearchBar } from "react-native-elements";
+import { View } from "react-native-web";
 import { MovieCell } from "./components/MovieCell";
 import { styles } from "./MovieListScreen.styles";
 
@@ -43,7 +50,7 @@ export default function MovieListScreen({ navigation, route }) {
   );
 
   // Renders a row of the FlatList.
-  const renderItem = ({ item }) => {
+  const RenderItem = ({ item }) => {
     const overlapFound = (listA, listB) => {
       let foundActor = false;
       listA.forEach((x) => {
@@ -60,6 +67,13 @@ export default function MovieListScreen({ navigation, route }) {
 
     if (meetsSearchCriteria && meetsActorsCriteria) {
       // TODO: Return a MovieCell, wrapped by a TouchableOpacity so we can handle taps.
+      return (
+        <View>
+          <TouchableOpacity style={styles.button} onPress={onPress}>
+            <MovieCell movieItem={item} />
+          </TouchableOpacity>
+        </View>
+      );
     } else {
       // If the item doesn't meet search/filter criteria, then we can
       // simply return null and it won't be rendered in the list!
@@ -74,6 +88,11 @@ export default function MovieListScreen({ navigation, route }) {
       {/* TODO: Add a SearchBar: https://reactnativeelements.com/docs/searchbar/.
                 The third-party package should already be installed for you. */}
       {/* TODO: Add a FlatList: https://reactnative.dev/docs/flatlist */}
+      <FlatList
+        data={TABLE_DATA}
+        renderItem={({ item }) => <RenderItem item={item} />}
+        keyExtractor={(item) => item.id}
+      />
     </SafeAreaView>
   );
 }

@@ -10,7 +10,6 @@ export default function MovieDetailScreen({ route }) {
         {/* TODO: Configure this screen to have an image and appropriate text describing the movie. 
                 See the example on the spec for design inspiration.
                 Feel free to use the styles below. */}
-                <Text>Hello</Text>
       </ScrollView>
     </SafeAreaView>
   );
