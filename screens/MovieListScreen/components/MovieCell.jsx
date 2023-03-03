@@ -9,7 +9,7 @@ export const MovieCell = ({ movieItem }) => {
   return (
     <View style={styles.movieCell}>
       <View style={styles.movieCellLeft}>
-        <Image style={styles.movieCellImage} source={movieItem} />
+        <Image style={styles.movieCellImage} source={{uri: movieItem.posterurl}} />
       </View>
       <View style={styles.movieCellRight}>
         <Text style={styles.movieCellTitle}>{movieItem.title}</Text>

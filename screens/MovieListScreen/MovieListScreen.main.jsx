@@ -5,9 +5,9 @@ import {
   Button,
   TouchableOpacity,
   Text,
+  View,
 } from "react-native";
 import { SearchBar } from "react-native-elements";
-import { View } from "react-native-web";
 import { MovieCell } from "./components/MovieCell";
 import { styles } from "./MovieListScreen.styles";
 
@@ -65,6 +65,8 @@ export default function MovieListScreen({ navigation, route }) {
     let meetsSearchCriteria = true;
     let meetsActorsCriteria = true;
 
+    const onPress = () => console.log("hello");
+
     if (meetsSearchCriteria && meetsActorsCriteria) {
       // TODO: Return a MovieCell, wrapped by a TouchableOpacity so we can handle taps.
       return (
@@ -81,12 +83,22 @@ export default function MovieListScreen({ navigation, route }) {
     }
   };
 
+  const updateSearch = (search) => {
+    setSearch(search);
+  };
+
   // Our final view consists of a search bar and flat list, wrapped in
   // a SafeAreaView to support iOS.
   return (
     <SafeAreaView style={styles.container}>
       {/* TODO: Add a SearchBar: https://reactnativeelements.com/docs/searchbar/.
                 The third-party package should already be installed for you. */}
+      <SearchBar
+        placeholder="Search"
+        onChangeText={updateSearch}
+        value={search}
+        platform={"ios"}
+      />
       {/* TODO: Add a FlatList: https://reactnative.dev/docs/flatlist */}
       <FlatList
         data={TABLE_DATA}
