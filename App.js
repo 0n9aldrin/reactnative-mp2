@@ -1,5 +1,6 @@
 // App.js is the entry point of our application.
 import React from "react";
+import { Text, StyleSheet } from "react-native";
 import "react-native-gesture-handler";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
@@ -27,13 +28,28 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Group>
-          <Stack.Screen name="All Movies" component={MovieListScreen} />
+          <Stack.Screen
+            name="All Movies"
+            component={MovieListScreen}
+          />
           <Stack.Screen name="About This Movie" component={MovieDetailScreen} />
         </Stack.Group>
         <Stack.Group screenOptions={{ presentation: "modal" }}>
-          <Stack.Screen name="Movie Filter Screen" component={MovieFilterScreen} />
+          <Stack.Screen
+            name="Movie Filter Screen"
+            component={MovieFilterScreen}
+          />
         </Stack.Group>
       </Stack.Navigator>
     </NavigationContainer>
   );
 }
+
+const styles = StyleSheet.create({
+  filter: {
+    fontFamily: "Avenir",
+    fontSize: 20,
+    marginRight: 20,
+    color: "#0066FF"
+  },
+});

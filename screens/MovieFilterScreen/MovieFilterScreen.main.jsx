@@ -19,29 +19,36 @@ export default function MovieFilterScreen({ navigation, route }) {
   const [actors, setActors] = useState([]);
 
   // TODO: Destructure navigation params from props.
+  const { actor } = route.params;
 
-  useEffect(
-    () => {
-      // TODO: Recieve actors passed by MovieListScreen here, and update
-      // our local state using setActors.
-    },
-    [
-      /* TODO: Insert dependent variables here. */
-    ]
-  );
+  useEffect(() => {
+    // TODO: Recieve actors passed by MovieListScreen here, and update
+    // our local state using setActors.
+    setActors(actor);
+  }, [
+    /* TODO: Insert dependent variables here. */
+    navigation,
+  ]);
 
-  useEffect(
-    () => {
-      // TODO: Override the default back button to...
-      //  1) Hide the left button.
-      //  2) Show a "Done" button on the right that navigates back to the MovieListScreen
-      //      and passes back our current list of actors via params.
-      // https://reactnavigation.org/docs/header-buttons/
-    },
-    [
-      /* TODO: Insert dependent state variables here. */
-    ]
-  );
+  useEffect(() => {
+    // TODO: Override the default back button to...
+    //  1) Hide the left button.
+    //  2) Show a "Done" button on the right that navigates back to the MovieListScreen
+    //      and passes back our current list of actors via params.
+    // https://reactnavigation.org/docs/header-buttons/
+    navigation.setOptions({
+      headerRight: () => (
+        <Button
+          onPress={() => navigation.navigate("All Movies", { actors })}
+          title="Done"
+        />
+      ),
+      headerLeft: null,
+    });
+  }, [
+    /* TODO: Insert dependent state variables here. */
+    actors,
+  ]);
 
   // When we tap an actor cell, flip the boolean!
   const didTapActorCell = (actor) => {
